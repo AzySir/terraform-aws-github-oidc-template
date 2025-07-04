@@ -18,11 +18,6 @@ variable "github_repos" {
   }))
 }
 
-variable "role_prefix" {
-  description = "Prefix for IAM role names"
-  type        = string
-  default     = "github-actions"
-}
 
 variable "tags" {
   description = "Tags to apply to all resources"

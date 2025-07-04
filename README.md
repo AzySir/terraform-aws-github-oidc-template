@@ -21,22 +21,21 @@ This template creates AWS IAM roles and an OIDC provider for GitHub Actions to a
 Edit `common.auto.tfvars` to configure:
 
 ```hcl
-region = "us-east-1"
-account_id = "123456789012"
+region = "<add region here>"
+account_id = "<add account id here>"
 
 github_repos = {
-  "my-app" = {
-    org       = "your-github-org"
-    repo      = "your-repo-name"
-    role_name = "github-actions-my-app"
+  "<add repo name here>" = {
+    org       = "<add org here>"
+    repo      = "<add repo here>"
+    role_name = "<add new role name here>"
   }
 }
 
-role_prefix = "github-actions"
-
 tags = {
-  Environment = "dev"
-  Project     = "your-project"
+  ManagedBy  = "terraform"
+  CreatedBy  = "Adam Sir"
+  Repository = "<insert repo name here>"
 }
 ```
 
