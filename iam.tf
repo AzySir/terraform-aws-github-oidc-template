@@ -24,7 +24,7 @@ data "aws_iam_policy_document" "github_assume_role" {
 resource "aws_iam_role" "github_actions" {
   for_each = var.github_repos
 
-  name               = "${var.role_prefix}-${each.key}"
+  name               = each.value.role_name
   assume_role_policy = data.aws_iam_policy_document.github_assume_role[each.key].json
   tags               = var.tags
 }
@@ -32,6 +32,6 @@ resource "aws_iam_role" "github_actions" {
 resource "aws_iam_role_policy_attachment" "github_actions" {
   for_each = var.github_repos
 
-  policy_arn = each.value.policy_arn
+  policy_arn = "arn:aws:iam::aws:policy/AdministratorAccess"
   role       = aws_iam_role.github_actions[each.key].name
 }

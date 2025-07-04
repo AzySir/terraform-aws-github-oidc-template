@@ -6,6 +6,7 @@ This template creates AWS IAM roles and an OIDC provider for GitHub Actions to a
 
 - Creates GitHub OIDC provider in AWS
 - Creates IAM roles with trust policies for specific GitHub repositories
+- Grants AdministratorAccess to GitHub Actions roles
 - Follows security best practices with repository-specific access
 - Uses native Terraform for IAM policy documents
 
@@ -21,12 +22,13 @@ Edit `common.auto.tfvars` to configure:
 
 ```hcl
 region = "us-east-1"
+account_id = "123456789012"
 
 github_repos = {
   "my-app" = {
-    org        = "your-github-org"
-    repo       = "your-repo-name"
-    policy_arn = "arn:aws:iam::YOUR-ACCOUNT:policy/YourPolicy"
+    org       = "your-github-org"
+    repo      = "your-repo-name"
+    role_name = "github-actions-my-app"
   }
 }
 
